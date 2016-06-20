@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#define RGB(R,G,B) [UIColor colorWithRed:R/255.0f green:G/255.0f blue:B/255.0f alpha:1.0f]
+
 @interface AppDelegate ()
 
 @end
@@ -16,7 +18,11 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    
+    //[[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance ]setBarTintColor:RGB(200, 100, 245)];
+    
+    
     return YES;
 }
 

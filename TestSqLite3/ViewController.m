@@ -8,6 +8,8 @@
 
 #import "ViewController.h"
 
+
+
 @interface ViewController ()
 
 @end
@@ -17,6 +19,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.navigationItem.title=@"aaa";
+    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(100, 100, 200, 100)];
+    label.text=@"test sqlite3";
+    
+    [self.view addSubview:label];
 }
 
 - (void)didReceiveMemoryWarning {
