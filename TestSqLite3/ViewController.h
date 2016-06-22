@@ -10,6 +10,23 @@
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITextView *testView;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *ageTextField;
+
+@property (weak, nonatomic) IBOutlet UITextField *addressTextField;
+
+
+- (IBAction)addPersonal:(id)sender;
+
+- (IBAction)deletePerson:(id)sender;
+- (IBAction)queryPerson:(id)sender;
+
+- (IBAction)editPerson:(id)sender;
+
 
 @end
 

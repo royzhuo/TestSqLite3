@@ -14,6 +14,8 @@
 		B04EBC341D17E8CD00F20A3C /* TestSqLite3.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B04EBC321D17E8CD00F20A3C /* TestSqLite3.xcdatamodeld */; };
 		B04EBC361D17E8CD00F20A3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B04EBC351D17E8CD00F20A3C /* Assets.xcassets */; };
 		B04EBC391D17E8CD00F20A3C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B04EBC371D17E8CD00F20A3C /* LaunchScreen.storyboard */; };
+		B0AA223C1D19AFC600407908 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AA223B1D19AFC600407908 /* Person.m */; };
+		B0B3C8011D1913F4004935CF /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B0B3C8001D1913F4004935CF /* libsqlite3.0.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,9 @@
 		B04EBC351D17E8CD00F20A3C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B04EBC381D17E8CD00F20A3C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B04EBC3A1D17E8CD00F20A3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0AA223A1D19AFC600407908 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		B0AA223B1D19AFC600407908 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		B0B3C8001D1913F4004935CF /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0B3C8011D1913F4004935CF /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +50,7 @@
 		B04EBC1A1D17E8CD00F20A3C = {
 			isa = PBXGroup;
 			children = (
+				B0B3C8001D1913F4004935CF /* libsqlite3.0.tbd */,
 				B04EBC251D17E8CD00F20A3C /* TestSqLite3 */,
 				B04EBC241D17E8CD00F20A3C /* Products */,
 			);
@@ -70,6 +77,8 @@
 				B04EBC3A1D17E8CD00F20A3C /* Info.plist */,
 				B04EBC321D17E8CD00F20A3C /* TestSqLite3.xcdatamodeld */,
 				B04EBC261D17E8CD00F20A3C /* Supporting Files */,
+				B0AA223A1D19AFC600407908 /* Person.h */,
+				B0AA223B1D19AFC600407908 /* Person.m */,
 			);
 			path = TestSqLite3;
 			sourceTree = "<group>";
@@ -155,6 +164,7 @@
 			files = (
 				B04EBC2E1D17E8CD00F20A3C /* ViewController.m in Sources */,
 				B04EBC341D17E8CD00F20A3C /* TestSqLite3.xcdatamodeld in Sources */,
+				B0AA223C1D19AFC600407908 /* Person.m in Sources */,
 				B04EBC2B1D17E8CD00F20A3C /* AppDelegate.m in Sources */,
 				B04EBC281D17E8CD00F20A3C /* main.m in Sources */,
 			);
@@ -271,8 +281,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TestSqLite3/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.Roy.TestSqLite3;
+				PRODUCT_BUNDLE_IDENTIFIER = "--cn.Roy.TestSqLite3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -282,8 +293,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TestSqLite3/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = cn.Roy.TestSqLite3;
+				PRODUCT_BUNDLE_IDENTIFIER = "--cn.Roy.TestSqLite3";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -307,6 +319,7 @@
 				B04EBC3F1D17E8CD00F20A3C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
