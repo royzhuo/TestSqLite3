@@ -82,9 +82,19 @@
    // [self query:searchPersonalSQL];
     
     [personalArray removeAllObjects];
-    NSArray *persons=[self queryBySQL:searchPersonalSQL withParamters:nil];
-    for (Person *person in persons) {
-        NSString *value=[NSString stringWithFormat:@"name:%@,age:%@,address:%@",person.name,person.age,person.address];
+    NSArray *results=[self queryBySQL:searchPersonalSQL withParamters:nil];
+    if(results.count==0) {
+        UIAlertView *alertView=[[UIAlertView alloc]initWithTitle:@"暂无数据" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"好的", nil];
+        [alertView show];
+        return ;
+    }
+    for (int i=0; i<results.count; i++) {
+        NSDictionary *dic=results[i];
+        NSString *name=[dic objectForKey:@"name"];
+        NSString *age=[dic objectForKey:@"age"];
+        NSString *address=[dic objectForKey:@"address"];
+        
+        NSString *value=[NSString stringWithFormat:@"name:%@,age:%@,address:%@",name,age,address];
         [personalArray addObject:value];
     }
     [self showPersonInfo];
@@ -201,8 +211,20 @@
         self.ageTextField.text=@"";
         self.addressTextField.text=@"";
         
-        //更新列表
-        [self query:[NSString stringWithFormat:@"select * from %@",TABLENAME]];
+    //更新列表
+        [personalArray removeAllObjects];
+     NSArray *result=[self queryBySQL:[NSString stringWithFormat:@"select * from %@",TABLENAME] withParamters:nil];
+        for (NSDictionary *dic in result) {
+            NSString *name=[dic objectForKey:@"name"];
+            NSString *age=[dic objectForKey:@"age"];
+            NSString *address=[dic objectForKey:@"address"];
+            
+            NSString *value=[NSString stringWithFormat:@"name:%@,age:%@,address:%@",name,age,address];
+            [personalArray addObject:value];
+        }
+        
+        [self showPersonInfo];
+        
     }
 }
 
@@ -222,39 +244,76 @@
     }
     
    querySql=[NSString stringWithFormat:@"select * from %@ where %@=?",TABLENAME,NAME];
-    
-    persons=[self queryBySQL:querySql withParamters:array];
-    if(persons.count<1){
+    NSArray *result=[self queryBySQL:querySql withParamters:array];
+    if(result.count==0){
         UIAlertView *view=[[UIAlertView alloc]initWithTitle:@"数据库中没有相关数据" message:@"请输入正确信息" delegate:self cancelButtonTitle:nil otherButtonTitles:@"好的", nil];
-        [view show];
-
+                [view show];
         return;
     }
-    for (Person *person in persons) {
-        
-         NSString *sql=[NSString stringWithFormat:@"delete from %@ where id=?",TABLENAME];
-        NSArray *parameters=@[person.id];
-      int result=  [self update:sql withParamters:parameters];
-        if (result==0) {
-            NSLog(@"删除失败");
-            return;
-        }else if (result==1){
-             NSLog(@"删除成功");
+    for (NSDictionary *dic in result) {
+        NSString *pId=[dic objectForKey:@"id"];
+        NSString *sql=[NSString stringWithFormat:@"delete from %@ where id=?",TABLENAME];
+        NSArray *parameters=@[[dic objectForKey:@"id"]];
+        int result=  [self update:sql withParamters:parameters];
+        if(result==0){
+            UIAlertView *view=[[UIAlertView alloc]initWithTitle:@"删除失败" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"好的", nil];
+            [view show];
+        }else{
+            UIAlertView *view=[[UIAlertView alloc]initWithTitle:@"删除成功" message:nil delegate:self cancelButtonTitle:nil otherButtonTitles:@"好的", nil];
+            [view show];
             self.nameTextField.text=NULL;
             self.ageTextField.text=@"";
             self.addressTextField.text=@"";
         }
-        
     }
+    
     //更新列表
-    //[self query:[NSString stringWithFormat:@"select * from %@",TABLENAME]];
-    NSArray *personList=  [self queryBySQL:[NSString stringWithFormat:@"select * from %@",TABLENAME] withParamters:nil];
     [personalArray removeAllObjects];
-    for (Person *person in personList) {
-        NSString *value=[NSString stringWithFormat:@"name:%@,age:%@,address:%@",person.name,person.age,person.address];
+    NSArray *result2=[self queryBySQL:[NSString stringWithFormat:@"select * from %@",TABLENAME] withParamters:nil];
+    for (NSDictionary *dic in result2) {
+        NSString *name=[dic objectForKey:@"name"];
+        NSString *age=[dic objectForKey:@"age"];
+        NSString *address=[dic objectForKey:@"address"];
+        
+        NSString *value=[NSString stringWithFormat:@"name:%@,age:%@,address:%@",name,age,address];
         [personalArray addObject:value];
     }
+    
     [self showPersonInfo];
+    
+    
+//    persons=[self queryBySQL:querySql withParamters:array];
+//    if(persons.count<1){
+//        UIAlertView *view=[[UIAlertView alloc]initWithTitle:@"数据库中没有相关数据" message:@"请输入正确信息" delegate:self cancelButtonTitle:nil otherButtonTitles:@"好的", nil];
+//        [view show];
+//
+//        return;
+//    }
+//    for (Person *person in persons) {
+//        
+//         NSString *sql=[NSString stringWithFormat:@"delete from %@ where id=?",TABLENAME];
+//        NSArray *parameters=@[person.id];
+//      int result=  [self update:sql withParamters:parameters];
+//        if (result==0) {
+//            NSLog(@"删除失败");
+//            return;
+//        }else if (result==1){
+//             NSLog(@"删除成功");
+//            self.nameTextField.text=NULL;
+//            self.ageTextField.text=@"";
+//            self.addressTextField.text=@"";
+//        }
+//        
+//    }
+//    //更新列表
+//    //[self query:[NSString stringWithFormat:@"select * from %@",TABLENAME]];
+//    NSArray *personList=  [self queryBySQL:[NSString stringWithFormat:@"select * from %@",TABLENAME] withParamters:nil];
+//    [personalArray removeAllObjects];
+//    for (Person *person in personList) {
+//        NSString *value=[NSString stringWithFormat:@"name:%@,age:%@,address:%@",person.name,person.age,person.address];
+//        [personalArray addObject:value];
+//    }
+//    [self showPersonInfo];
    
     
     
@@ -294,26 +353,27 @@
     
     }
     
-    NSArray *persons=[self queryBySQL:sql withParamters:paramters];
-    if(persons.count<1){
-        UIAlertView *view=[[UIAlertView alloc]initWithTitle:@"数据库中没有相关数据" message:@"请输入正确信息" delegate:self cancelButtonTitle:nil otherButtonTitles:@"好的", nil];
+    NSArray *result=[self queryBySQL:sql withParamters:paramters];
+    if(result.count<1){
+        UIAlertView *view=[[UIAlertView alloc]initWithTitle:@"数据库中没有相关数据" message:@"仅能通过姓名和地点进行搜索" delegate:self cancelButtonTitle:nil otherButtonTitles:@"好的", nil];
         [view show];
         
         return;
     }
     [personalArray removeAllObjects];
-    for (Person *person in persons) {
+    for (NSDictionary *dic in result) {
     
         self.nameTextField.text=@"";
         self.ageTextField.text=@"";
         self.addressTextField.text=@"";
-        NSString *value=[NSString stringWithFormat:@"name:%@,age:%@,address:%@",person.name,person.age,person.address];
-            [personalArray addObject:value];
-            [self showPersonInfo];
-            
-      
+        NSString *name=[dic objectForKey:@"name"];
+        NSString *age=[dic objectForKey:@"age"];
+        NSString *address=[dic objectForKey:@"address"];
         
+        NSString *value=[NSString stringWithFormat:@"name:%@,age:%@,address:%@",name,age,address];
+        [personalArray addObject:value];
     }
+    [self showPersonInfo];
 
     
     
@@ -355,7 +415,7 @@
 -(NSArray *) queryBySQL:(NSString *) sql withParamters:(NSArray *) paramters
 {
     
-    NSMutableArray *persons=[NSMutableArray array];
+    NSMutableArray *results=[NSMutableArray array];
     sqlite3_stmt *stmt;
     if( sqlite3_prepare_v2(db, [sql UTF8String], -1, &stmt, nil)==SQLITE_OK){
         if (paramters!=NULL || paramters.count>0) {
@@ -364,23 +424,27 @@
             }
         }
         
-        
         while(sqlite3_step(stmt)==SQLITE_ROW){
-            int pId=sqlite3_column_int(stmt,0);
-            char *pName=sqlite3_column_text(stmt, 1);
-            char *pAge=sqlite3_column_text(stmt,2);
-            char *pAddress=sqlite3_column_text(stmt,3);
             
-            
-            
-            Person *p=[[Person alloc]initWithId:[ NSString stringWithFormat:@"%d",pId ] name:[[NSString alloc]initWithUTF8String:pName] age:[[NSString alloc]initWithUTF8String:pAge] address:[[NSString alloc]initWithUTF8String:pAddress]];
-            
-            [persons addObject:p];
+            int count=sqlite3_column_count(stmt);  //返回语句句柄相关的字段数；
+             NSLog(@"循环里面查询有%d条",count);
+            //新建字典存放值
+            NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
+            for (int i=0; i<count; i++) {
+                char *cCN=sqlite3_column_name(stmt,i); //字段名称
+                char *cCV=sqlite3_column_text(stmt,i);//字段值
+                NSLog(@"字段名称:%@,字段值:%@",[NSString stringWithUTF8String:cCN],[NSString stringWithUTF8String:cCV]);
+                [dic setObject:[NSString stringWithUTF8String:cCV] forKey:[NSString stringWithUTF8String:cCN]];
+            }
+            [results addObject:dic];
+            continue;
         
         }
     }
+    //释放资源
+    sqlite3_finalize(stmt);
     
-    return persons;
+    return results;
 
 }
 @end
