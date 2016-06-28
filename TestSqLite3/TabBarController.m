@@ -10,7 +10,7 @@
 #import "ViewController.h"
 #import "FMDatabaseViewController.h"
 
-@interface TabBarController ()<UITabBarDelegate,UITabBarControllerDelegate>
+@interface TabBarController ()<UITabBarControllerDelegate>
 
 @end
 
@@ -32,13 +32,28 @@
     for (int i=0; i<self.viewControllers.count; i++) {
         UIViewController *viewController=self.viewControllers[i];
         viewController.tabBarItem.title=titles[i];
+        //显示消息数量
+        viewController.tabBarItem.badgeValue=@"11";
     }
+    NSArray *array= self.tabBar.items;
+    NSLog(@"ar:%@",array);
    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
+}
+
+#pragma mark 协议
+-(BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    NSLog(@"shouldSelected");
+    return true;
+}
+-(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    NSLog(@"didSelected");
 }
 
 
