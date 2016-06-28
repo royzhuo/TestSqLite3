@@ -10,6 +10,7 @@
 #import <sqlite3.h>
 #import "Person.h"
 
+
 #define DBNAME @"personalInfo.sqlite"
 //const NSString *DBNAME=@"personalInfo.sqlite";
 #define NAME @"name"
@@ -18,11 +19,14 @@
 #define TABLENAME @"personalInfo"
 
 
+
 @interface ViewController ()
 {
     sqlite3 *db;
     
     NSMutableArray *personalArray;
+    
+
     
     
 
