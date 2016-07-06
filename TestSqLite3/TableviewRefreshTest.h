@@ -17,8 +17,14 @@
 
 
 
+@property (weak, nonatomic) IBOutlet UITextField *nameTextField;
 
 
+@property (weak, nonatomic) IBOutlet UITextField *sexTextField;
 
+@property (weak, nonatomic) IBOutlet UIButton *addBtn;
+
+
+- (IBAction)addStudent:(id)sender;
 
 @end

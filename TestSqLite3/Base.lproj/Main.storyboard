@@ -287,20 +287,70 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mGI-93-BNF">
-                                <rect key="frame" x="0.0" y="68" width="320" height="500"/>
+                                <rect key="frame" x="0.0" y="164" width="320" height="404"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="404" id="BYd-Ze-4rZ"/>
+                                </constraints>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1f7-Ka-KOM">
+                                <rect key="frame" x="0.0" y="64" width="320" height="100"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="姓名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lV-IE-ooy">
+                                        <rect key="frame" x="8" y="14" width="35" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MLJ-h7-VE4">
+                                        <rect key="frame" x="46" y="8" width="56" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="US9-WF-LWk">
+                                        <rect key="frame" x="15" y="46" width="46" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="添加">
+                                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="addStudent:" destination="Ajm-pv-33l" eventType="touchUpInside" id="0Xu-5g-8Sg"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TVj-El-tJS">
+                                        <rect key="frame" x="223" y="8" width="56" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="性别" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sOn-TD-K7j">
+                                        <rect key="frame" x="175" y="12" width="35" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="T3H-6G-W7E"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dSW-MS-C2M" firstAttribute="top" secondItem="mGI-93-BNF" secondAttribute="bottom" id="Gft-tl-8Ap"/>
-                            <constraint firstItem="mGI-93-BNF" firstAttribute="leading" secondItem="53e-bu-JP7" secondAttribute="leading" id="Ghd-i6-JRz"/>
-                            <constraint firstItem="mGI-93-BNF" firstAttribute="top" secondItem="Vvy-hw-wFk" secondAttribute="bottom" constant="48" id="OQU-ah-Qs9"/>
-                            <constraint firstAttribute="trailing" secondItem="mGI-93-BNF" secondAttribute="trailing" id="PTX-Sp-bIo"/>
+                            <constraint firstAttribute="trailing" secondItem="mGI-93-BNF" secondAttribute="trailing" id="9Wc-0g-eOg"/>
+                            <constraint firstAttribute="trailing" secondItem="1f7-Ka-KOM" secondAttribute="trailing" id="CPX-IH-S9Z"/>
+                            <constraint firstItem="mGI-93-BNF" firstAttribute="top" secondItem="53e-bu-JP7" secondAttribute="top" constant="164" id="Fhf-lW-OLo"/>
+                            <constraint firstItem="1f7-Ka-KOM" firstAttribute="top" secondItem="53e-bu-JP7" secondAttribute="top" constant="64" id="rdb-xa-jev"/>
+                            <constraint firstItem="mGI-93-BNF" firstAttribute="leading" secondItem="53e-bu-JP7" secondAttribute="leading" id="sUn-xm-atH"/>
+                            <constraint firstItem="dSW-MS-C2M" firstAttribute="top" secondItem="mGI-93-BNF" secondAttribute="bottom" id="sWa-lZ-QGW"/>
+                            <constraint firstItem="1f7-Ka-KOM" firstAttribute="leading" secondItem="53e-bu-JP7" secondAttribute="leading" id="zPQ-xW-igq"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="addBtn" destination="US9-WF-LWk" id="aPJ-Zs-no7"/>
+                        <outlet property="nameTextField" destination="MLJ-h7-VE4" id="TQd-tb-Dnw"/>
+                        <outlet property="sexTextField" destination="TVj-El-tJS" id="URd-eW-vBN"/>
                         <outlet property="tableview" destination="mGI-93-BNF" id="8mj-mH-SB1"/>
                     </connections>
                 </viewController>
